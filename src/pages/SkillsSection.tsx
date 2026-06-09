@@ -158,8 +158,8 @@ export function SkillsSection() {
               category={group.category}
               items={group.items}
               icon={categoryIcons[group.category] ?? "code"}
-              accent={categoryAccents[gi % categoryAccents.length]}
-              accentRgb={categoryAccentRgb[gi % categoryAccentRgb.length]}
+              accent={categoryAccents[gi % categoryAccents.length] ?? "var(--color-primary-dim)"}
+              accentRgb={categoryAccentRgb[gi % categoryAccentRgb.length] ?? "0, 219, 233"}
               index={gi}
             />
           ))}

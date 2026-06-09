@@ -142,6 +142,9 @@ const result = await Bun.build({
   sourcemap: "linked",
   define: {
     "process.env.NODE_ENV": JSON.stringify("production"),
+    "process.env.BUN_PUBLIC_EMAILJS_SERVICE_ID": JSON.stringify(process.env.BUN_PUBLIC_EMAILJS_SERVICE_ID || ""),
+    "process.env.BUN_PUBLIC_EMAILJS_TEMPLATE_ID": JSON.stringify(process.env.BUN_PUBLIC_EMAILJS_TEMPLATE_ID || ""),
+    "process.env.BUN_PUBLIC_EMAILJS_PUBLIC_KEY": JSON.stringify(process.env.BUN_PUBLIC_EMAILJS_PUBLIC_KEY || ""),
   },
   ...cliConfig,
 });

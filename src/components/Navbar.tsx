@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { profile } from "../contents/profile";
+import { EmailModal } from "./EmailModal";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hireModalOpen, setHireModalOpen] = useState(false);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -14,6 +16,7 @@ export function Navbar() {
   const navItems = ["About", "Experience", "Skills", "Projects", "Contact"];
 
   return (
+    <>
     <nav
       id="navbar"
       style={{
@@ -105,13 +108,13 @@ export function Navbar() {
             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
           </svg>
         </a>
-        <a
-          href={`mailto:${profile.email}`}
+        <button
+          onClick={() => setHireModalOpen(true)}
           className="btn-primary"
           style={{ padding: "8px 20px", fontSize: "13px" }}
         >
           Hire Me
-        </a>
+        </button>
       </div>
 
       {/* Mobile menu button */}
@@ -164,5 +167,9 @@ export function Navbar() {
         </div>
       )}
     </nav>
+
+    {/* Hire Me email modal — rendered outside nav to avoid containing block issues */}
+    <EmailModal isOpen={hireModalOpen} onClose={() => setHireModalOpen(false)} />
+    </>
   );
 }
